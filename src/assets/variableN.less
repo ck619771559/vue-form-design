@@ -1,0 +1,179 @@
+// variable
+@color_white: #fff;
+@color_block: #000;
+@color_border: #ddd;
+@color_gery: #606266;
+@color_blue: #409EFF;
+@color_333: #333;
+@color_666: #666;
+@color_999: #999;
+
+@font_size_litter_content: 13px;
+@font_size_content: 14px;
+@font_size_icon: 11px;
+
+@font_size_litter_title: 13px;
+@font_size_title: 17px;
+@font_size_big_title: 19px;
+
+@border_style_normal: 1px solid #ddd;
+
+@border_radius_normal: 6px;
+
+@content_padding: 20px; //内容与边框距离
+// mixin
+.border_radius(@radius:@border_radius_normal) {
+  border-radius: @radius;
+}
+
+.box_shadow_white {
+  box-shadow: 0 8px 12px #EBEDF0;
+}
+
+.line-overflow{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.multi-overflow(@line-sum:2){
+  -webkit-line-clamp: @line-sum; // 用来限制在一个块元素显示的文本的行数
+  display: -webkit-box; // 将对象作为弹性伸缩盒模型显示
+  -webkit-box-orient: vertical; //设置或检查伸缩盒对象的子元素的排列方式
+  text-overflow: ellipsis; // 在多行文本的情况下，用...隐藏超出范围的文本
+  word-break: break-all;
+  overflow: hidden;
+  white-space:normal;
+}
+
+.bg_shadow_white {
+
+  background: @color_white;
+  //.box_shadow_white;
+  border: @border_style_normal;
+  //.border_radius();
+}
+
+.flex-center-center() {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.flex-sb-center(){
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+.hide-scrollbar() {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// 对应行业属性样式,作为mixin，防止类似样式。
+.box-header-1(@color:@color_blue,@title_size:@font_size_title) {
+  border: 1px solid @color;
+  background: @color_white;
+  .header {
+    font-size: @title_size;
+    background: @color;
+    color: @color_white;
+    padding: 8px 8px;
+  }
+}
+
+.box-shadow-border {
+  box-shadow: 0 0 10px @color_border;
+  border: 1px solid @color_border;
+}
+
+.abs_center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.cursor-grab {
+  cursor : grab;
+  &:active {
+    cursor : grabbing;
+  }
+}
+
+.hover-cover(@cover_color:rgba(35,144,255,0.1)){
+  position: relative;
+  &:hover:before{
+    content: ' ';
+    background: @cover_color;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 0;
+  }
+}
+
+
+
+// mixin
+
+// 无法使用  以下格式。@name不起作用！！！！！！ 故下面使用蠢办法
+//.simulator-calc-size(@name,@size){
+//    @name:calc(@size / var(--simulator-multiple))
+//}
+.simulator-calc-width(@size){
+  width:calc(@size / var(--simulator-multiple))
+}
+.simulator-calc-height(@size){
+  height:calc(@size / var(--simulator-multiple))
+}
+.simulator-calc-line-height(@size){
+  line-height:calc(@size / var(--simulator-multiple))
+}
+.simulator-calc-left(@size){
+  left:calc(@size / var(--simulator-multiple))
+}
+.simulator-calc-right(@size){
+  right:calc(@size / var(--simulator-multiple))
+}
+.simulator-calc-bottom(@size){
+  bottom:calc(@size / var(--simulator-multiple))
+}
+.simulator-calc-top(@size){
+  top:calc(@size / var(--simulator-multiple))
+}
+.simulator-calc-font-size(@size){
+  font-size:calc(@size / var(--simulator-multiple))
+}
+.simulator-calc-padding(@size){
+  padding: calc(@size / var(--simulator-multiple));
+}
+.simulator-calc-padding-2(@size,@size2){
+  padding: calc(@size / var(--simulator-multiple)) calc(@size2 / var(--simulator-multiple));
+}
+.simulator-calc-padding-3(@size,@size2,@size3){
+  padding: calc(@size / var(--simulator-multiple)) calc(@size2 / var(--simulator-multiple)) calc(@size3 / var(--simulator-multiple));
+}
+.simulator-calc-padding-4(@size,@size2,@size3,@size4){
+  padding: calc(@size / var(--simulator-multiple)) calc(@size2 / var(--simulator-multiple)) calc(@size3 / var(--simulator-multiple))  calc(@size4 / var(--simulator-multiple));
+}
+// less 有什么好办法可以搞定这种事，在线等 急。
+.simulator-calc-margin(@size){
+  margin: calc(@size / var(--simulator-multiple));
+}
+.simulator-calc-margin-2(@size,@size1){
+  margin: calc(@size / var(--simulator-multiple)) calc(@size1 / var(--simulator-multiple));
+}
+.simulator-calc-margin-3(@size,@size1,@size2){
+  margin: calc(@size / var(--simulator-multiple)) calc(@size1 / var(--simulator-multiple)) calc(@size2 / var(--simulator-multiple));
+}
+.simulator-calc-margin-4(@size,@size1,@size2,@size3){
+  margin: calc(@size / var(--simulator-multiple)) calc(@size1 / var(--simulator-multiple)) calc(@size2 / var(--simulator-multiple)) calc(@size3 / var(--simulator-multiple));
+}
+.simulator-calc-border-radius(@size){
+  border-radius:calc(@size / var(--simulator-multiple));
+}
+

@@ -1,0 +1,27 @@
+@import "variableN";
+
+* {
+  box-sizing: border-box;
+}
+
+.title-icon {
+  .simulator-calc-width(10px);
+  .simulator-calc-height(32px);
+  background: linear-gradient(-41deg, rgba(254, 80, 93, 1), rgba(249, 27, 97, 1));
+  box-shadow: 0px calc(4px / var(--simulator-multiple)) calc(16px / var(--simulator-multiple)) 0px rgba(255, 107, 107, 0.52);
+  border-radius: calc(5px / var(--simulator-multiple));
+  display: inline-block;
+  vertical-align: -8%;
+  margin-right: calc(21px / var(--simulator-multiple));
+}
+
+.title-more{
+  .simulator-calc-font-size(26px);
+  font-weight:bold;
+  color:rgba(143,135,136,1);
+  .flex-center-center;
+  .title-more-icon{
+    .simulator-calc-height(18px);
+    .simulator-calc-width(10px);
+  }
+}

@@ -1,0 +1,181 @@
+// 变量与mixins
+// author: ekxs
+// date: 2020年5月17日19点49分
+
+$font-size-mini: 11px;
+$font-size-small: 13px;
+$font-size-base: 14px;
+$font-size-medium: 16px;
+$font-size-large: 18px;
+$font-size-big: 20px;
+
+// var color start
+$font-color-base:#333;
+$font-color-minor:#999;
+$font-color-select:#409eff;
+
+$font-color-label:#606266;
+
+$error-color : red;
+
+$border-box: 1px solid #ebebeb;
+$border-dashed-base:1px dashed #848484;
+$border-dashed-minor:1px dashed #d5d5d5;
+
+$background-color-label: #dedeea;
+$background-color-gery:#fafafa;
+
+
+
+$border-dashed-label:1px dashed #409eff;
+
+$border-color:#409eff;
+$border-select-hover:1px solid $border-color;
+$border-select:1px solid $border-color;
+
+$border-table:1px solid #ccc;
+$border-table-shadow: -3px 0px 4px #f3f3f3;
+
+$border-error :1px solid $error-color;
+
+$background-color-select: #ecf5ff;
+
+
+// var color end
+
+
+
+
+// mixins start
+
+@mixin btn-radio($action:false){ // 测试scss的if好不好用
+  padding: 6px 9px;
+  margin-left: 10px;
+  font-size: $font-size-base;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+  &:hover{
+    color: #6f7180;
+  }
+  @if $action {background: #409eff;color: #fff;
+    &:hover{
+      color: #fafafa;
+    }
+  }
+}
+
+@mixin inline-label{
+  display: inline-block;
+  line-height: 19px;
+  font-size: 14px;
+  color :rgb(96, 98, 102)
+}
+
+@mixin flex-s-b($directions:column,$wrap:nowrap) {
+  display: flex;
+  flex-direction: $directions;
+  justify-content: space-between;
+  flex-wrap: $wrap;
+
+}
+@mixin flex-s-b-c($directions:column,$wrap:nowrap) {
+  display: flex;
+  flex-direction: $directions;
+  justify-content: space-between;
+  flex-wrap: $wrap;
+  align-items: center;
+}
+
+@mixin  flex-col($dir:column){
+  display: flex;
+  flex-direction: $dir;
+}
+
+@mixin flex-c-c($display:flex){
+  display: $display;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+@mixin hide-scrollbar{
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin line-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin multi-overflow($line-sum:2) {
+  -webkit-line-clamp: $line-sum; // 用来限制在一个块元素显示的文本的行数
+  display: -webkit-box; // 将对象作为弹性伸缩盒模型显示
+  -webkit-box-orient: vertical; //设置或检查伸缩盒对象的子元素的排列方式
+  text-overflow: ellipsis; // 在多行文本的情况下，用...隐藏超出范围的文本
+  word-break: break-all;
+  overflow: hidden;
+  white-space: normal;
+}
+
+@mixin move-style($color:#409eff){ // 移动时的样式
+  visibility: hidden !important;
+  position: relative;
+  height: 5px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  &:before {
+    position: absolute;
+    visibility: initial;
+    top: 0px;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    content: " ";
+    background: $color;
+  }
+}
+@mixin abs-cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+@mixin tooltip{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, calc(-100% - 10px));
+  z-index: 2;
+  min-width: 250px;
+  min-height: 32px;
+  line-height: 1.5;
+  font-size: $font-size-small;
+  padding: 6px 8px;
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  word-wrap: break-word;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  &:before{
+    content: ' ';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-top: 5px solid rgba(0, 0, 0, 0.75);
+  }
+}
+// mixins end

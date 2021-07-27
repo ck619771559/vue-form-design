@@ -1,0 +1,52 @@
+stages:
+  - test
+  - build
+  - deploy
+cache: &global_cache
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules/
+      - dist
+      - lib
+    policy: pull
+    
+unit test:
+  cache:
+    <<: *global_cache
+    policy: push
+  stage: test
+  tags:
+    - node-arm
+  only:
+    - tags
+  script:
+    - cnpm install
+    - cnpm run lint
+
+build:
+  stage: build
+  cache:
+    <<: *global_cache
+    policy: pull-push
+  tags:
+    - node-arm
+  only:
+    - tags
+  script:
+    - cnpm run build
+    - cnpm run lib
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist
+      - lib
+      
+deploy-demo:
+  stage: deploy
+  tags:
+    - node-arm
+  only:
+    - tags
+  script:
+    - cp -rf ./dist/* /var/www/vue-form-design/html/
+
